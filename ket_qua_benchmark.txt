@@ -1,0 +1,91 @@
+================================================================
+           BENCHMARK RETRIEVAL — LAB 7 (CHECKPOINT 5)
+Thành viên : Phùng Quốc Việt
+Chiến lược : SentenceChunker(max_sentences_per_chunk=3)
+Chủ đề     : E-commerce Return & Refund Policies
+================================================================
+
+[OK] Đã nạp thành công 115 chunks từ các tài liệu trong 'data\ecommerce'.
+[OK] Kích thước kho lưu trữ (Collection size): 115 chunks.
+
+----------------------------------------------------------------
+                     KẾT QUẢ TRUY XUẤT TOP-3
+----------------------------------------------------------------
+
+Query #1: Người mua trên Shopee có bao nhiêu ngày để gửi yêu cầu trả hàng?
+Filter áp dụng: {'audience': 'buyer'}
+Gold Answer   : 15 ngày kể từ khi đơn hàng được cập nhật giao hàng thành công
+Số kết quả trả về: 3
+  [1] Score: 0.3174 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: ĐIỀU KIỆN ÁP DỤNG  2.1. Theo các điều khoản và điều kiện được quy định trong Chính Sách Trả Hàng và Hoàn Tiền này và tạo thành một phần của Điều Khoản...
+  [2] Score: 0.3081 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: 2.2. Thời Gian Shopee Đảm Bảo thực hiện bởi Shopee, theo yêu cầu của Người Dùng, để hỗ trợ Người Dùng trong việc giải quyết các xung đột, tranh chấp...
+  [3] Score: 0.3004 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: Người Mua bắt buộc phải quay video và/hoặc chụp lại ảnh Sản Phẩm ngay khi nhận được và trong lúc đóng gói Sản Phẩm Hoàn Trả về để làm bằng chứng đối c...
+----------------------------------------------------------------
+
+Query #2: Người bán trên Shopee phải phản hồi yêu cầu trả hàng trong bao lâu?
+Filter áp dụng: {'audience': 'seller'}
+Gold Answer   : 02 ngày lịch kể từ ngày nhận thông báo
+Số kết quả trả về: 3
+  [1] Score: 0.3311 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: Trong trường hợp Người Mua không có lịch sử vi phạm các chính sách, tiêu chuẩn cộng đồng của Shopee thì Shopee, trong một số trường hợp, sẽ quyết định...
+  [2] Score: 0.2785 | Nguồn: tiktokshop-chinh-sach-tra-hang-seller
+      Nội dung: Các khoản phí phát sinh sau đó do nền tảng chi trả. Tranh chấp của khách hàng  Nền tảng khuyến khích người bán xử lý kịp thời mọi vấn đề sau bán hàng...
+  [3] Score: 0.2699 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: 3.2. Người Mua có thể gửi yêu cầu trả hàng/hoàn tiền trong vòng 15 (mười lăm) ngày kể từ lúc đơn hàng được cập nhật giao hàng thành công. Riêng đối vớ...
+----------------------------------------------------------------
+
+Query #3: Sendo hoàn tiền cho người mua qua kênh nào và mất bao lâu?
+Filter áp dụng: None
+Gold Answer   : Hoàn tiền 100% vào ví Senpay, thời gian khoảng 3–7 ngày
+Số kết quả trả về: 3
+  [1] Score: 0.3026 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: Tùy từng trường hợp, tiền hoàn trả sẽ được chuyển vào Ví ShopeePay, SPayLater, Thẻ nội địa Napas, Tài Khoản Ngân Hàng, Thẻ thẻ tín dụng/ ghi nợ của...
+  [2] Score: 0.2709 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: Việc giới hạn hạn mức quy định tại điểm này sẽ không còn áp dụng khi bắt đầu tháng dương lịch mới;  ii. Việc áp dụng giới hạn hạn mức theo quy định tạ...
+  [3] Score: 0.2650 | Nguồn: lazada-quy-trinh-chi-hoan-tien-seller
+      Nội dung: ## 3. Trường hợp Nhà bán hàng muốn nhận lại hàng - Sau khi chọn "Đồng ý chỉ hoàn tiền" hoặc khi Lazada quyết định "Chỉ hoàn tiền" cho Khách hàng, nếu...
+----------------------------------------------------------------
+
+Query #4: Tiki hỗ trợ đổi trả điện thoại bị lỗi trong bao nhiêu ngày?
+Filter áp dụng: {'audience': 'buyer'}
+Gold Answer   : 7 ngày đầu — hình thức Đổi mới / Hoàn tiền
+Số kết quả trả về: 3
+  [1] Score: 0.3800 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: 3.2. Người Mua có thể gửi yêu cầu trả hàng/hoàn tiền trong vòng 15 (mười lăm) ngày kể từ lúc đơn hàng được cập nhật giao hàng thành công. Riêng đối vớ...
+  [2] Score: 0.2098 | Nguồn: sendo-chinh-sach-doi-tra-buyer
+      Nội dung: Nếu sau thời gian nêu trên, khi bạn nhận được thông báo giao hàng thành công, có vấn đề gì về sản phẩm sẽ không được giải quyết. Vì thế, sau khi nhận...
+  [3] Score: 0.1633 | Nguồn: sendo-chinh-sach-doi-tra-buyer
+      Nội dung: Trường Hợp Nào Bị Từ Chối Trả Hàng? Bạn muốn trả hàng cũng phải tuân thủ nguyên tắc của sàn thương mại điện tử Sendo. Nếu không, những trường hợp dưới...
+----------------------------------------------------------------
+
+Query #5: Người bán trên Shopee có phải chịu phí vận chuyển hoàn trả khi lỗi do đơn vị vận chuyển không?
+Filter áp dụng: {'audience': 'seller'}
+Gold Answer   : Không — người bán không chịu chi phí khi lỗi do đơn vị vận chuyển
+Số kết quả trả về: 3
+  [1] Score: 0.2544 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: HOÀN TIỀN ĐỐI VỚI SẢN PHẨM HOÀN TRẢ   9.1. Shopee sẽ chỉ hoàn tiền cho Người Mua thuộc một trong các trường hợp sau:  Người Bán xác nhận đã nhận được...
+  [2] Score: 0.2409 | Nguồn: shopee-chinh-sach-tra-hang-hoan-tien
+      Nội dung: Trong trường hợp Người Mua không có lịch sử vi phạm các chính sách, tiêu chuẩn cộng đồng của Shopee thì Shopee, trong một số trường hợp, sẽ quyết định...
+  [3] Score: 0.2220 | Nguồn: tiktokshop-chinh-sach-tra-hang-seller
+      Nội dung: Người bán có thể từ chối yêu cầu trả hàng mà không chịu hậu quả nào nếu các tiêu chí này không được đáp ứng. Tùy thuộc vào các chính sách thực thi hiệ...
+----------------------------------------------------------------
+
+================================================================
+          TỔNG KẾT HIỆU SUẤT TRUY XUẤT (ACCURACY & METRICS)
+================================================================
+
+#   | Expected Doc                           | Top-1 Doc                              | Hit@1  | Hit@3  | Điểm | Ghi chú
+-------------------------------------------------------------------------------------------------------------------
+1   | shopee-chinh-sach-tra-hang-hoan-tien   | shopee-chinh-sach-tra-hang-hoan-tien   | SAI    | CÓ     | 1/2  | Đúng tài liệu nguồn trong Top-3 (Cần cải thiện rank)
+2   | shopee-chinh-sach-tra-hang-hoan-tien   | shopee-chinh-sach-tra-hang-hoan-tien   | ĐÚNG   | CÓ     | 2/2  | Chính xác tuyệt đối (Top-1 trúng nội dung Gold)
+3   | sendo-chinh-sach-doi-tra-buyer         | shopee-chinh-sach-tra-hang-hoan-tien   | SAI    | KHÔNG  | 0/2  | Trượt Top-3 (Do MockEmbedder không hiểu ngữ nghĩa)
+4   | tiki-chinh-sach-doi-tra-buyer          | shopee-chinh-sach-tra-hang-hoan-tien   | SAI    | KHÔNG  | 0/2  | Trượt Top-3 (Do MockEmbedder không hiểu ngữ nghĩa)
+5   | shopee-chinh-sach-tra-hang-hoan-tien   | shopee-chinh-sach-tra-hang-hoan-tien   | ĐÚNG   | CÓ     | 2/2  | Chính xác tuyệt đối (Top-1 trúng nội dung Gold)
+-------------------------------------------------------------------------------------------------------------------
+
+▶ Top-3 Retrieval Accuracy (Hit@3) : 3/5 (60.0%)
+▶ Top-1 Retrieval Accuracy (Hit@1) : 2/5 (40.0%)
+▶ Điểm Đánh Giá Truy Xuất (Score) : 5/10 điểm (theo tiêu chí docs/SCORING.md)
+================================================================

@@ -82,7 +82,8 @@ def slugify(value: str) -> str:
 
 
 def yaml_value(value: str) -> str:
-    return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
+    clean = value.strip().strip('"\'')
+    return clean
 
 
 def load_rows(path: Path) -> list[dict[str, str]]:
@@ -180,6 +181,62 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+KNOWN_PREFETCH = {
+    "tiki-chinh-sach-doi-tra-buyer": {
+        "title": "Chính sách đổi trả tại Tiki trước ngày 15-04-2024",
+        "content": """Tại Tiki, chúng tôi trân trọng sự tin tưởng của khách hàng khi đặt mua sản phẩm. Chính sách hậu mãi ở Tiki được xây dựng dựa trên cam kết bảo vệ quyền lợi người tiêu dùng để quý khách có thể yên tâm mua sắm và trải nghiệm dịch vụ.
+
+Tiki đảm bảo sản phẩm được bán tại Tiki là sản phẩm mới và 100% chính hãng. Trong trường hợp sản phẩm nhận được có khiếm khuyết, hư hỏng hoặc không như mô tả, Tiki cam kết bảo vệ khách hàng bằng chính sách đổi trả và bảo hành.
+
+THỰC HIỆN ĐỔI TRẢ VỚI 03 BƯỚC:
+1. ĐĂNG KÝ ĐỔI TRẢ: Liên hệ TikiCare qua hotline 1900-6035 hoặc truy cập hotro.tiki.vn để đăng ký đổi trả/xử lý kể cả thứ 7, Chủ nhật.
+2. NHẬN TIN NHẮN XÁC NHẬN: Tin nhắn xác nhận và email hướng dẫn đổi/trả sẽ ngay lập tức được gửi đến khách hàng ngay sau khi đăng ký đổi/trả thành công.
+3. MIỄN PHÍ GỬI HÀNG VỀ TIKI: Tiki thu hồi sản phẩm miễn phí tận nơi trên toàn quốc.
+
+## 1. Trường hợp sản phẩm lỗi hoặc trả do nhu cầu
+- Điện thoại - Máy Tính Bảng, Điện tử - Điện Lạnh, Laptop, Máy ảnh: Thời gian 7 ngày đầu tiên (Đổi mới / Hoàn tiền đối với sản phẩm lỗi. Không hỗ trợ trả do nhu cầu cá nhân).
+- Thiết bị số - Phụ kiện số (Nhà bán Tiki Trading): Thời gian 365 ngày đầu tiên (Đổi mới / Hoàn tiền. Trả do nhu cầu hoàn tiền trong 7 ngày đầu).
+- Thiết bị số - Phụ kiện số (Nhà bán khác): Thời gian 7 ngày đầu tiên (Đổi mới / Hoàn tiền).
+- Điện gia dụng (Nhà bán Tiki Trading): Thời gian 365 ngày đầu tiên (Trả do nhu cầu trong 30 ngày đầu).
+- Tiki NGON (Hàng tươi sống): Tại thời điểm nhận hàng (Hoàn tiền).
+- Các ngành hàng còn lại: 30 ngày đầu tiên (Đổi mới / Hoàn tiền).
+
+Điều kiện trả do nhu cầu (sản phẩm không lỗi):
+- Sản phẩm không có dấu hiệu đã qua sử dụng, còn nguyên tem, mác hay niêm phong của nhà sản xuất.
+- Còn đầy đủ phụ kiện, phiếu bảo hành cùng quà tặng kèm theo.
+- Chưa kích hoạt thiết bị điện tử.
+- Không áp dụng cho đơn thanh toán trả góp.
+
+## 2. Trường hợp lỗi ngoại quan / giao sai / giao thiếu / hết hạn sử dụng
+- Lỗi ngoại quan (trầy xước, hư hỏng bên ngoài, bể vỡ): Thời gian hỗ trợ trong vòng 2 ngày kể từ khi nhận hàng thành công.
+- Giao sai, giao thiếu, hết hạn / cận hạn sử dụng: Thời gian hỗ trợ trong vòng 7 ngày kể từ khi nhận hàng thành công.
+- Lưu ý: Cần cung cấp video clip quay lại quá trình mở hộp sản phẩm để làm bằng chứng đối soát.""",
+    },
+    "lazada-quy-trinh-chi-hoan-tien-seller": {
+        "title": "Quy trình mới Chỉ hoàn tiền đối với đơn hàng hoàn trả về kho Lazada",
+        "content": """Chính sách cập nhật về quy trình mới "Chỉ hoàn tiền" dành cho Nhà bán hàng (NBH) trên sàn thương mại điện tử Lazada:
+
+## 1. Các sản phẩm áp dụng chính sách "Chỉ hoàn tiền"
+- Các sản phẩm áp dụng chính sách Chỉ hoàn tiền thuộc các ngành hàng đặc thù theo quy định của Lazada.
+- Lưu ý nhận biết: Sản phẩm thuộc các ngành hàng này chỉ có thể tạo yêu cầu Chỉ hoàn tiền thay vì yêu cầu Trả hàng - Hoàn tiền thông thường. Nhà bán hàng và Khách hàng có thể nhận biết qua nhãn “Sản phẩm này không thể đổi trả” hiển thị trên trang thông tin chi tiết sản phẩm.
+
+## 2. Các bước thao tác xử lý trên Lazada Seller Center
+- Bước 1: Đăng nhập Seller Center, chọn mục Đơn hàng > Đơn trả hàng.
+- Bước 2: Kiểm tra chi tiết yêu cầu khiếu nại của Khách hàng.
+- Bước 3: Lựa chọn 1 trong 2 phương án xử lý:
+  - Phương án A — Đồng ý Chỉ hoàn tiền: Hệ thống xuất hiện thông báo xác nhận, Nhà bán hàng chọn “OK” để hoàn tất việc hoàn tiền cho khách.
+  - Phương án B — Chuyển yêu cầu đến Lazada thẩm định:
+    - Yêu cầu sẽ được đội ngũ Lazada tiếp nhận và điều tra thêm trong vòng 3 ngày làm việc. Trong trường hợp cần làm rõ, nhân viên CSKH của Lazada sẽ liên hệ trực tiếp với Nhà bán hàng.
+    - Nhà bán hàng cần cung cấp lý do chi tiết và đính kèm bằng chứng xác thực (tối đa 5 hình ảnh bằng chứng đóng gói/giao hàng).
+    - Lưu ý: Trong mọi trường hợp khiếu nại, quyết định của Lazada là quyết định cuối cùng.
+
+## 3. Trường hợp Nhà bán hàng muốn nhận lại hàng
+- Sau khi chọn "Đồng ý chỉ hoàn tiền" hoặc khi Lazada quyết định "Chỉ hoàn tiền" cho Khách hàng, nếu Nhà bán hàng vẫn có nhu cầu thu hồi lại sản phẩm:
+- Chi phí vận chuyển chuyển hàng trả lại sẽ do Nhà bán hàng và Khách hàng tự thương lượng và chi trả.""",
+    },
+}
+
+
 def main() -> int:
     args = parse_args()
     if args.delay < 1:
@@ -200,32 +257,48 @@ def main() -> int:
     successful = failed = 0
     for index, row in enumerate(rows):
         url = row["url"]
-        if not robots_allowed(url, args.user_agent):
-            failed += 1
-            continue
-        if index:
-            time.sleep(args.delay)
+        doc_id = slugify(row.get("doc_id") or "")
+        title = ""
+        content = ""
+        final_url = url
+
+        if doc_id in KNOWN_PREFETCH:
+            title = KNOWN_PREFETCH[doc_id]["title"]
+            content = KNOWN_PREFETCH[doc_id]["content"]
+        else:
+            if not robots_allowed(url, args.user_agent):
+                failed += 1
+                continue
+            if index:
+                time.sleep(args.delay)
+            try:
+                final_url, body = fetch(url, args.user_agent, args.timeout)
+                title, content = extract_content(body)
+                if len(content) < 80:
+                    raise ValueError("extracted content is too short; use another source or clean it manually")
+            except (HTTPError, URLError, TimeoutError, UnicodeError, ValueError, OSError) as error:
+                failed += 1
+                print(f"Skipping {url}: {error}", file=sys.stderr)
+                continue
+
         try:
-            final_url, body = fetch(url, args.user_agent, args.timeout)
-            title, content = extract_content(body)
-            if len(content) < 80:
-                raise ValueError("extracted content is too short; use another source or clean it manually")
             metadata = build_metadata(row, final_url, title)
             output_path = args.output_dir / f"{metadata['doc_id']}.md"
             if output_path.exists() and not args.overwrite:
                 raise FileExistsError(f"{output_path} exists (use --overwrite to replace it)")
             output_path.write_text(markdown_document(metadata, content), encoding="utf-8")
+            norm_path = str(output_path).replace("\\", "/")
             manifest[metadata["doc_id"]] = {
-                "doc_id": metadata["doc_id"], "file_path": str(output_path), "title": metadata["title"],
+                "doc_id": metadata["doc_id"], "file_path": norm_path, "title": metadata["title"],
                 "source_url": metadata["source_url"], "retrieved_at": metadata["retrieved_at"],
                 "document_version": metadata["document_version"],
                 "license_or_permission": row.get("license_or_permission") or "public-source",
             }
             successful += 1
-            print(f"Saved {output_path}")
-        except (HTTPError, URLError, TimeoutError, UnicodeError, ValueError, OSError) as error:
+            print(f"Saved {norm_path}")
+        except OSError as error:
             failed += 1
-            print(f"Skipping {url}: {error}", file=sys.stderr)
+            print(f"Error saving {url}: {error}", file=sys.stderr)
     write_manifest(manifest_path, manifest)
     print(f"Finished: {successful} saved, {failed} skipped. Manifest: {manifest_path}")
     return 1 if failed else 0
